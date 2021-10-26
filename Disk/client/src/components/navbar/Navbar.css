@@ -1,0 +1,33 @@
+
+
+.navbar{
+    display: flex;
+    height: 50px;
+    background-color: #FFD639;
+    justify-content: center;
+    width: 100%;
+    
+}
+.navbar__header{
+    margin-left: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+.navbar__login{
+    margin-left: auto;
+    margin-right:20px ;
+    margin-top: 12px;
+}
+.navbar__registration{
+    margin-right: 50px;
+    margin-top: 12px;
+}
+.container{ 
+    
+    display: flex;
+    align-items: center;
+}
+.navbar__logo{
+    margin-left: 40px;
+}
