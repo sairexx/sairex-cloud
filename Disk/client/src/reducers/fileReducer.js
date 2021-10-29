@@ -1,20 +1,35 @@
 const SET_FILES = "SET_FILES" //экшен чтобы инициализировать файлы
 const SET_CURRENT_DIR = "SET_CURRENT_DIR" //экшен для текущей дериктории
+const ADD_FILE = "ADD_FILE"
+const SET_POPUP_DISPLAY = "SET_POPUP_DISPLAY" 
+const PUSH_TO_STACK = "PUSH_TO_STACK" 
+const POP_FROM_STACK = "POP_FROM_STACK" 
 
 const defaultState = {
     files:[],
-    curentDir:null
+    curentDir:null,
+    popupDisplay:'none',
+    dirStack:[]
 }
 
 export default function fileReducer(state=defaultState,action){
     switch(action.type){
         case SET_FILES: return {...state, files:action.payload}
         case SET_CURRENT_DIR : return {...state, currentDir:action.payload}
+        case ADD_FILE: return {...state, files:[...state.files, action.payload]}
+        case SET_POPUP_DISPLAY: return {...state, popupDisplay: action.payload}
+        case PUSH_TO_STACK: return{...state, dirStack:[...state.dirStack, action.payload]}
         default:
             return state
     }
 
-} 
+}
+
+
+
 
 export const setFiles = (files) => ({type:SET_FILES, payload: files})  //action creator  - функиця которая вернет нам объект с типом и данными
 export const setCurrentDir = (dir) => ({type:SET_CURRENT_DIR, payload: dir})
+export const addFile = (file) => ({type:ADD_FILE, payload: file})
+export const setPopupDisplay = (display) => ({type:SET_POPUP_DISPLAY, payload: display})
+export const pushToStack = (dir) => ({type:PUSH_TO_STACK, payload: dir})

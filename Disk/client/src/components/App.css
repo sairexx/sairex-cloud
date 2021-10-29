@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
 body{
-    
-    background-color: #313B2F;;
+    font-family: 'Ubuntu', sans-serif; 
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 *{
     margin: 0;
@@ -14,10 +15,14 @@ body{
 .app{
     display: flex;
     flex-direction: column;
-    
+    width: 100%;
 }
 .wrap{
-    width: 100%;
+    width: 1740px;
     display: flex;
     flex-direction: column;
+    background-color: rgb(248, 247, 255);
+    align-self: center;
+    height: 90vh;
+    border-radius: 0 0 20px 20px;
 }

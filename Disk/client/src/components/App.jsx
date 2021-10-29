@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     dispatch(auth())
   }, [])
+  
   return (
     <BrowserRouter>
     <div className="app">
@@ -25,12 +26,12 @@ function App() {
             <Switch>
             <Route path = "/registration" component = {Registration}/>
             <Route path = "/login" component = {Login}/>
-            <Redirect to = "/login"/> //если будет введен несуществующий URL произойдет редирект на страницу логина  
+            <Redirect to = "/login"/>
           </Switch>
         :
           <Switch>
           <Route exact path = "/" component = {Disk}/>
-          <Redirect to = "/"/>  //если будет введен несуществующий URL произойдет редирект на главную   
+          <Redirect to = "/"/> 
         </Switch>
         }
       </div> 

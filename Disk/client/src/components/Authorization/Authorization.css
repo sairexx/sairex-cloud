@@ -3,11 +3,12 @@
     flex-direction: column;
     width: 500px;
     align-items: center;
-    background-color:#FFCB05 ;
+    background-color:#ffffff ;
     border-radius: 20px;
     padding: 30px;
     align-self: center;
     margin-top: 160px;
+    border: 2px solid black;
 }
 
 .Authorization__header{
@@ -16,18 +17,19 @@
 }
 
 input{
-    margin:10px 20px;
+    margin:5px 20px;
 }
 
 .Authorization__btn{
-    background-color: black;
-    color:#FFCB05;
+    background-color: rgb(51, 43, 43);
+    color:#ffffff;
     border:none;
     width: 100px;
-    height: 20px;
+    height: 30px;
     border-radius: 20px;
-    font-size: 10px;
+    font-size: 15px;
     transition: 0.9s;
+    margin-top: 10px;
    
 }
 .Authorization__btn:hover{

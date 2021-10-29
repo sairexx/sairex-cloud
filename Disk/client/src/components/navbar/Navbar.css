@@ -1,18 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
 
 
 .navbar{
     display: flex;
     height: 50px;
-    background-color: #FFD639;
+    background: rgba(4, 42, 43);
     justify-content: center;
     width: 100%;
+    color: white;
     
 }
 .navbar__header{
-    margin-left: 10px;
+    margin-left: 88px;
     font-size: 24px;
     font-weight: 700;
-    margin-top: 12px;
+    display: flex;
+    align-self: center;
+    font-family: 'Ubuntu', sans-serif; 
+    border-bottom: 2px solid white;
+    
 }
 .navbar__login{
     margin-left: auto;
@@ -29,5 +35,6 @@
     align-items: center;
 }
 .navbar__logo{
-    margin-left: 40px;
+    margin-left:1px;
+    width: auto;
 }
