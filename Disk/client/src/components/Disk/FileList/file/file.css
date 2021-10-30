@@ -5,7 +5,7 @@
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
     align-items: center;
 }
-
+/* свойства файла  */
 .file__name{
     grid-column-start: 2;
     
@@ -22,4 +22,24 @@
     justify-self: center;
     width: 40px;
     margin-left: 100px;
+}
+/* кнопки  */
+.file__btn{
+    display: none;
+
+}
+.file:hover .file__date{
+    grid-column-start: 3;
+
+}
+.file:hover .file__size{
+    grid-column-start: 4;
+}
+.file:hover .file__download{
+    grid-column-start: 5;
+    display: block;
+}
+.file:hover .file__delete{
+    grid-column-start: 6;
+    display: block;
 }

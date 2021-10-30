@@ -7,6 +7,16 @@
 .disk__create{
     margin-left: 10px;
 }
+.drop_area{
+    width: 1700px;
+    height: calc(100vh - 50px - 40px);
+    margin:10px;
+    border:2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+}
 .popup{
     width: 100%;
     height: 100vh;

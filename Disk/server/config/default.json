@@ -2,5 +2,5 @@
     "serverPort": 5000,
     "dbUrl": "mongodb+srv://Cyrex:pt7ObCVF67hEuK7F@clusterss.x4qj1.mongodb.net/Clusterss?retryWrites=true&w=majority",
     "secretKey":"mern-secret-key",
-    "filePath": "C:\\Users\\smit8\\Documents\\Disk\\server\\Files"
+    "filePath": "C:\\Users\\smit8\\Documents\\GitHub\\sdf\\CyrexCLoud\\Disk\\server\\Files"
 }

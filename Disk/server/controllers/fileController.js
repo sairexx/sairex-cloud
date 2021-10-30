@@ -5,11 +5,13 @@ const config = require('config')
 const fs = require('fs')
 
 class FileController {
+    //Создание папки
     async createDir(req,res){
         try{
             const {name, type, parent} = req.body
             const file = new File({name, type, parent, user: req.user.id})
             const parrentFile = await File.findOne({_id:parent})
+            //если нету родительской папки
              if(!parrentFile){
                  file.path = name
                  await FileService.createDir(file)
@@ -18,7 +20,6 @@ class FileController {
                  await FileService.createDir(file)
                  parrentFile.childs.push(file._id)
                  await parrentFile.save()
-
              }
             await file.save()
             return res.json(file)
@@ -28,7 +29,7 @@ class FileController {
         }
     }
 
-
+    //получение файлов
     async getFile(req, res ){
         try{
             const files = await File.find({user: req.user.id, parent: req.query.parent})
@@ -39,7 +40,7 @@ class FileController {
             return res.status(500).json({message:"Can not get files"})
         }
     }
-
+    //загрузка файлов на сайт
     async uploadFile(req, res){
         try{
             const file = req.files.file
@@ -47,7 +48,7 @@ class FileController {
             const parent = await File.findOne({user:req.user.id, _id: req.body.parent}) 
             const user = await User.findOne({_id: req.user.id})
 
-            if(user.usedSpace + file.size > user.usedSpace){
+            if(user.usedSpace + file.size > user.diskSpace){
                 return res.status(400).json({message:"There no space on the disk"})
             }
 
@@ -66,11 +67,15 @@ class FileController {
             file.mv(path)
 
             const type = file.name.split('.').pop()
+            let filePath = file.name
+            if(parent){
+                filePath = parent.path + '\\' + file.name
+            }
             const dbFile = new File({
                 name:file.name,
                 type,
                 size:file.size,
-                path:parent?.path,
+                path:filePath,
                 parrent:parent?._id,
                 user: user._id
             })
@@ -83,6 +88,35 @@ class FileController {
         }catch(e){
             console.log(e)
             return res.status(500).json({message:"Upload error"})
+        }
+    }
+    //загрузка файлов на компьютер
+    async downloadFile(req, res) {
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user.id})
+            const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name
+            if (fs.existsSync(path)) {
+                return res.download(path, file.name)
+            }
+            return res.status(400).json({message: "Download error"})
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Download error"})
+        }
+    }
+    //удаление файлов
+    async deleteFile(req, res) {
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user.id})
+            if (!file) {
+                return res.status(400).json({message:'file not found'})
+            }
+            FileService.deleteFile(file)
+            await file.remove()
+            return res.json({message : "File was deleted"})
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Dir is not empty"})
         }
     }
 }
