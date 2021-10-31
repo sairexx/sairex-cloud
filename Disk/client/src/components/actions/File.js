@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {addFile, deleteFileActio, deleteFileAction, setFiles} from "../../reducers/fileReducer";
+import {addFile, deleteFileAction, setFiles} from "../../reducers/fileReducer";
 
 
 export function getFiles(dirId) {

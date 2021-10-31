@@ -6,6 +6,7 @@ import {  createDir, getFiles, uploadFile } from '../actions/File'
 import "./Disk.css"
 import FileList from './FileList/FileList'
 import Popup from './Popup'
+import Uploader from './Uploader/Uploader'
 
 const Disk = () => {
     const dispatch = useDispatch()
@@ -66,6 +67,7 @@ const Disk = () => {
             </div>
             <FileList/>
             <Popup/>
+            <Uploader/>
         </div>
         :
         <div className="drop_area" onDrop = {dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
