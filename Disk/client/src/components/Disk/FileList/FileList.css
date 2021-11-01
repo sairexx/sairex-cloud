@@ -1,5 +1,6 @@
 .filelist {
     margin: 20px 0;
+    
 }
 .filelist_header{
     display: grid;
@@ -7,6 +8,7 @@
 }
 .filelist__name{
     grid-column-start: 2;
+    
 }
 .filelist__date {
     grid-column-start:5;

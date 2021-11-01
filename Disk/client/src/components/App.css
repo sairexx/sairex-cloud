@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
 body{
     font-family: 'Ubuntu', sans-serif; 
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background: white;
 }
 *{
     margin: 0;
@@ -21,8 +21,8 @@ body{
     width: 1740px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(248, 247, 255);
+    background-color: white;
     align-self: center;
-    height: 90vh;
-    border-radius: 0 0 20px 20px;
+    height: 95vh;
+
 }

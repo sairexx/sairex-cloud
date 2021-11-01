@@ -1,7 +1,7 @@
 const fs = require('fs') //Предназначен для работы с файловой системой
 const { resolve } = require('path')
 const config = require('config')
-const File = require('../models/File')
+const file = require('../models/File')
 
 
 class FileService {

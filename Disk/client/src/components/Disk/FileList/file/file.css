@@ -1,9 +1,14 @@
 .file{
-    margin:10px 0;
-    border-bottom:solid 2px black;
+    margin:5px 0;
+    border: 2px solid black;
+    border-radius:5px;
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
     align-items: center;
+}
+.file:hover{
+    background-color:#cccfd3;
+    cursor: pointer;
 }
 /* свойства файла  */
 .file__name{
@@ -13,15 +18,19 @@
 .file__date {
     grid-column-start:5;
     justify-self: center;
+    border-bottom:solid 2px black;
+    
 }
 .file__size {
     grid-column-start: 6;
     justify-self: center;
+    border-bottom:solid 2px black;
 }
 .file__img{
-    justify-self: center;
+    align-items: center;
     width: 40px;
-    margin-left: 100px;
+    margin-left:80px;
+    
 }
 /* кнопки  */
 .file__btn{
@@ -42,4 +51,27 @@
 .file:hover .file__delete{
     grid-column-start: 6;
     display: block;
+    justify-self: center;
+    align-items: center;
+    
+
+}
+.file__download{
+    color: white;
+    background-color:green;
+    border-radius:10px;
+    padding:4px;
+    border: none;
+}
+.file__delete{
+    color: white;
+    background-color:red;
+    border-radius:10px;
+    padding:4px;
+    border: none;
+
+
+}
+.file__delete:hover{
+    cursor: pointer;
 }
