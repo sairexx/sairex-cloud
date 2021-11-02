@@ -127,3 +127,8 @@ input{
     background-color:#939598;
     
 }
+.disk__select{
+
+    justify-content: space-between;
+
+}

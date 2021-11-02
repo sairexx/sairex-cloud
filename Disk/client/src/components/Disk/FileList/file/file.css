@@ -47,6 +47,8 @@
 .file:hover .file__download{
     grid-column-start: 5;
     display: block;
+    justify-self: center;
+    align-items: center;
 }
 .file:hover .file__delete{
     grid-column-start: 6;
