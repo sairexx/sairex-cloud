@@ -5,12 +5,15 @@
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
     align-items: center;
+    transition: 1s;
+    
 }
 .file:hover{
-    background-color:#cccfd3;
+    background-color:#b6b7bb;
     cursor: pointer;
+    transition: 0.2s;
 }
-/* свойства файла  */
+/* свойства файла  */   
 .file__name{
     grid-column-start: 2;
     
@@ -71,9 +74,22 @@
     border-radius:10px;
     padding:4px;
     border: none;
-
-
 }
 .file__delete:hover{
     cursor: pointer;
+}
+
+/* tiles view */
+.file-tiles{
+    width: 150;
+    height: 150;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
+.file-tiles__img{
+    width: 100px;
+    height: 100px;
 }

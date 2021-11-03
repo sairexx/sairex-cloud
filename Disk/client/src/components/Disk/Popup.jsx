@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Disk.css'
+import './Popup.css'
 import Input from '../../Utils/Input'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPopupDisplay } from '../../reducers/fileReducer'

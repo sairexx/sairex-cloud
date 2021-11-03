@@ -8,6 +8,7 @@ router.post('/upload', authMiddleware, FileController.uploadFile)
 router.get('', authMiddleware, FileController.getFile)
 router.get('/download', authMiddleware, FileController.downloadFile)
 router.delete('/', authMiddleware, FileController.deleteFile)
+router.get('/search', authMiddleware, FileController.searchFile)
 
 
 

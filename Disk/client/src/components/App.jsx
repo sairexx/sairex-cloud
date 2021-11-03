@@ -22,7 +22,7 @@ function App() {
     <div className="app">
       <Navbar/>
       <div className="wrap"> 
-        {!isAuth ?
+        {!isAuth  ?
             <Switch>
             <Route path = "/registration" component = {Registration}/>
             <Route path = "/login" component = {Login}/>

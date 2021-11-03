@@ -22,7 +22,6 @@
 .file-enter-active{
     animation:file-enter 500ms forwards;
 }
-
 @keyframes file-enter {
     0% {
         opacity: 0;
@@ -32,4 +31,12 @@
         opacity: 1;
         transform: translateY(0);
     } 
+}
+
+.filetiles{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+    padding: 0 0 10px 10px;
+    
 }

@@ -38,3 +38,11 @@
     margin-left:1px;
     width: auto;
 }
+.navbar__log-navlink{
+    color: white;
+    text-decoration: none;
+}
+.navbar__reg-navlink{
+    color: white;
+    text-decoration: none;
+}

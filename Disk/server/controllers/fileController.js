@@ -3,6 +3,7 @@ const User = require('../models/User')
 const File = require('../models/File')
 const config = require('config')
 const fs = require('fs')
+const fileService = require('../services/fileService')
 
 class FileController {
     //Создание папки
@@ -109,7 +110,7 @@ class FileController {
     async downloadFile(req, res) {
         try {
             const file = await File.findOne({_id: req.query.id, user: req.user.id})
-            const path = config.get('filePath') + '\\' + req.user.id + '\\' + file.path + '\\' + file.name
+            const path = fileService.getPath(file)
             if (fs.existsSync(path)) {
                 return res.download(path, file.name)
             }
@@ -133,6 +134,18 @@ class FileController {
         } catch (e) {
             console.log(e)
             res.status(500).json({message: "Dir is not empty"})
+        }
+    }
+    //поиск файлов
+    async searchFile(req, res) {
+        try {
+            const searchName = req.query.search
+            let files = await File.find({user: req.user.id})
+            files = files.filter(file => file.name.includes(searchName))
+            return res.json(files)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Search error"})
         }
     }
 }
