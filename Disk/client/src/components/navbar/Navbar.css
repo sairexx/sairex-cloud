@@ -4,7 +4,7 @@
 .navbar{
     display: flex;
     height: 50px;
-    background: #54565B;
+    background: #000000;
     justify-content: center;
     width: 100%;
     color: white;
@@ -17,13 +17,14 @@
     display: flex;
     align-self: center;
     font-family: 'Ubuntu', sans-serif; 
-    border-bottom: 2px solid white;
+    
     
 }
 .navbar__login{
     margin-left: auto;
     margin-right:20px ;
     margin-top: 12px;
+    cursor: pointer;
 }
 .navbar__registration{
     margin-right: 50px;

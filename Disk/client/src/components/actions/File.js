@@ -112,7 +112,7 @@ export function deleteFile(file) {
     }
 }
 
-export function searchFile(search) {
+export function searchFiles(search) {
     return async dispatch => {
         try {
             const response = await axios.get(`http://localhost:5000/api/files/search?search=${search}`, 

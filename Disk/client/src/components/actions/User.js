@@ -1,4 +1,5 @@
 import axios from "axios"
+import { showLoader } from "../../reducers/appReducer"
 import { setUser } from "../../reducers/userReducer"
 
 export const registration = async (email, password) => {

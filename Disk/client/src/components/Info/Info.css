@@ -1,0 +1,10 @@
+.info__wrapper{
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-color: rgb(10, 14, 6);
+    overflow-x: hidden;
+}
+.noscroll { 
+    overflow-x: hidden;
+  }
+  

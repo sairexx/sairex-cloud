@@ -18,9 +18,9 @@ const Navbar = () => {
                 {!isAuth && <div className = "navbar__login"> <NavLink to = "/login" className = "navbar__log-navlink">Войти</NavLink></div>}
                 {!isAuth && <div className = "navbar__registration"><NavLink to = "/registration" className = "navbar__reg-navlink">Регистрация</NavLink></div>}
                 {isAuth && <div className = "navbar__login" onClick = {() => dispatch(logout()) }>Выход</div>}
-            
-            </div>
+            </div>  
        </div>
+       
     )
 }
 

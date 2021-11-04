@@ -26,9 +26,11 @@
     border-radius:5px;
     font-family: 'Ubuntu', sans-serif; 
     height: 26px; 
+    
 }
 .disk__create:hover{
     background-color:#939598;
+    
 }
 .drop_area{
     width: 1700px;
@@ -43,6 +45,7 @@
 .disk__upload{
     display: flex;
     align-items: center;
+    
 }
 
 .disk__upload-input{
@@ -67,6 +70,7 @@
     text-align: center;
     border: 2px solid black;
     border-radius: 5px;
+    box-shadow: 2px 10px 8px 0px rgba(34, 60, 80, 0.39);
 
     
     
@@ -79,10 +83,11 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  box-shadow: 2px 10px 8px 0px rgba(34, 60, 80, 0.39);
 }
 
 
-
+/* представление файлов */
 .disk__tiles{
   background-image: url("../../assets/img/tiles.svg");
   width: 20px;
@@ -111,10 +116,10 @@
 /* loader */
 .loader{
     width: 100%;
-    height: calc(100vh - 50px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: calc(100vh - 150px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 .lds-roller {
     display: inline-block;

@@ -7,6 +7,7 @@
     align-items: center;
     transition: 1s;
     
+    
 }
 .file:hover{
     background-color:#b6b7bb;
@@ -21,13 +22,13 @@
 .file__date {
     grid-column-start:5;
     justify-self: center;
-    border-bottom:solid 2px black;
+    
     
 }
 .file__size {
     grid-column-start: 6;
     justify-self: center;
-    border-bottom:solid 2px black;
+   
 }
 .file__img{
     align-items: center;
@@ -41,11 +42,11 @@
 
 }
 .file:hover .file__date{
-    grid-column-start: 3;
+    display: none;
 
 }
 .file:hover .file__size{
-    grid-column-start: 4;
+    display: none;
 }
 .file:hover .file__download{
     grid-column-start: 5;
@@ -62,18 +63,22 @@
 
 }
 .file__download{
-    color: white;
-    background-color:green;
-    border-radius:10px;
-    padding:4px;
-    border: none;
+  border: 2px solid black;
+  padding: 2px;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 8px;
+  color: black;
 }
 .file__delete{
-    color: white;
-    background-color:red;
-    border-radius:10px;
-    padding:4px;
-    border: none;
+    border: 2px solid black;
+    padding: 2px;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 8px;
+    color: black;
 }
 .file__delete:hover{
     cursor: pointer;

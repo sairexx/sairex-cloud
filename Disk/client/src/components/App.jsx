@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "./actions/User";
 import Disk from "./Disk/Disk";
+import { showLoader } from "../reducers/appReducer";
+import Info from "./Info/Info";
 
 function App() {
 
@@ -14,28 +16,28 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(auth())
+   dispatch(auth())    
   }, [])
-  
+
   return (
     <BrowserRouter>
-    <div className="app">
-      <Navbar/>
-      <div className="wrap"> 
-        {!isAuth  ?
+      <div className="app">
+        <Navbar/>
+        <div className="wrap"> 
+          {!isAuth  ?
+              <Switch>
+              <Route path = "/registration" component = {Registration}/>
+              <Route path = "/login" component = {Login}/>
+              <Redirect to = "/" /> 
+            </Switch>
+          :
             <Switch>
-            <Route path = "/registration" component = {Registration}/>
-            <Route path = "/login" component = {Login}/>
-            <Redirect to = "/login"/>
+            <Route exact path = "/" component = {Disk}/>
+            <Redirect to = "/"/> 
           </Switch>
-        :
-          <Switch>
-          <Route exact path = "/" component = {Disk}/>
-          <Redirect to = "/"/> 
-        </Switch>
-        }
-      </div> 
-    </div>
+          }
+        </div> 
+      </div>
     </BrowserRouter>
   );
 }
