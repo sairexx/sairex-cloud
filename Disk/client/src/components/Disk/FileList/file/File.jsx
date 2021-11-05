@@ -5,6 +5,7 @@ import fileLogo from '../../../../assets/img/file.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { pushToStack, setCurrentDir } from '../../../../reducers/fileReducer'
 import { deleteFile, downloadFile } from '../../../actions/File'
+import { arrType } from '../../../../Utils/imageSelector'
 
 const File = ({file}) => {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const File = ({file}) => {
 
     //кнопка скачивания
     function downloadClickHandler(e){
+        console.log(file)
         e.stopPropagation()
         downloadFile(file)
     }
@@ -46,11 +48,11 @@ const File = ({file}) => {
             return file.name
         }
     }
-
+    
     if(FileView === 'list'){
         return (
         <div className = 'file' onClick = {() => openDirHandler(file)}>
-            <img src = {file.type === 'dir' ? dirLogo : fileLogo} alt="" className = 'file__img' />
+            <img src = {arrType[file.type] === undefined ? fileLogo : arrType[file.type]} alt="" className = 'file__img' />
             <div className="file__name">{file.name}</div>
             <div className="file__date">{file.date.slice(0,10)}</div>
             <div className="file__size">{formatSizeUnits(file.size)}</div>
