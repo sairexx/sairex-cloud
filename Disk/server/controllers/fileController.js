@@ -4,6 +4,7 @@ const File = require('../models/File')
 const config = require('config')
 const fs = require('fs')
 const fileService = require('../services/fileService')
+const Uuid = require('uuid')
 
 class FileController {
     //Создание папки
@@ -60,28 +61,22 @@ class FileController {
     async uploadFile(req, res){
         try{
             const file = req.files.file
-            
             const parent = await File.findOne({user:req.user.id, _id: req.body.parent}) 
             const user = await User.findOne({_id: req.user.id})
-
             if(user.usedSpace + file.size > user.diskSpace){
                 return res.status(400).json({message:"There no space on the disk"})
             }
-
             user.usedSpace = user.usedSpace + file.size
-
             let path;
             if(parent){
                 path = `${config.get('filePath')}\\${user._id}\\${parent.path}\\${file.name}`
             } else{
                 path = `${config.get('filePath')}\\${user._id}\\${file.name}`
             }
-
             if(fs.existsSync(path)){
                 return res.status(400).json({message:"File already exists"})
             }
             file.mv(path)
-
             const type = file.name.split('.').pop()
             let filePath = file.name
             if(parent){
@@ -95,10 +90,8 @@ class FileController {
                 parrent:parent?._id,
                 user: user._id
             })
-
             await dbFile.save()
             await user.save()
-
             res.json(dbFile)
 
         }catch(e){
@@ -148,7 +141,38 @@ class FileController {
             res.status(500).json({message: "Search error"})
         }
     }
+    //загрузка аватара
+    async uploadAvatar(req, res) {
+        try {
+            const file = req.files.file
+            const user = await User.findById(req.user.id)
+            const avatarName = Uuid.v4() + ".jpg"
+            file.mv(config.get('staticPath') + "\\" + avatarName)
+            user.avatar = avatarName
+            await user.save()
+            return res.json(user)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Upload avatar error"})
+        }
+    }
+    //удаление аватара
+    async deleteAvatar(req, res) {
+        try {
+            const user = await User.findById(req.user.id)
+            fs.unlinkSync(config.get('staticPath') + "\\" + user.avatar)
+            user.avatar = null
+            await user.save()
+            return res.json(user)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json({message: "Delete avatar error"})
+        }
+    }
+
+
 }
+
 
 
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { combineReducers } from 'redux'
 import { showLoader } from '../../reducers/appReducer'
 import { setCurrentDir, setFileView, setPopupDisplay } from '../../reducers/fileReducer'
-import {  createDir, getFiles, searchFile, searchFiles, uploadFile } from '../actions/File'
+import {   getFiles, searchFiles, uploadFile } from '../actions/File'
 import "./Disk.css"
 import FileList from './FileList/FileList'
 import Popup from './Popup'
@@ -62,11 +61,11 @@ const Disk = () => {
     //поиск
     function searchChangeHandler(e) {
         setSearchName(e.target.value)
-        if (searchTimeout != false) {
+        if (searchTimeout !== false) {
             clearTimeout(searchTimeout)
         }
         dispatch(showLoader())
-        if(e.target.value != '') {
+        if(e.target.value !== '') {
             setSearchTimeout(setTimeout((value) => {
                 dispatch(searchFiles(value));
             }, 400, e.target.value))

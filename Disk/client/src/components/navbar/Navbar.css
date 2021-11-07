@@ -1,43 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
 
-
 .navbar{
     display: flex;
+    align-items: center;
     height: 50px;
     background: #000000;
     justify-content: center;
     width: 100%;
     color: white;
-    
+    padding: 0 85px;
 }
 .navbar__header{
-    margin-left: 88px;
     font-size: 24px;
     font-weight: 700;
     display: flex;
     align-self: center;
     font-family: 'Ubuntu', sans-serif; 
-    
-    
 }
 .navbar__login{
     margin-left: auto;
-    margin-right:20px ;
-    margin-top: 12px;
+    margin-right:20px;
     cursor: pointer;
 }
 .navbar__registration{
     margin-right: 50px;
-    margin-top: 12px;
 }
-.container{ 
-    
+.container{    
     display: flex;
     align-items: center;
-}
-.navbar__logo{
-    margin-left:1px;
-    width: auto;
 }
 .navbar__log-navlink{
     color: white;
@@ -46,4 +36,8 @@
 .navbar__reg-navlink{
     color: white;
     text-decoration: none;
+}
+.navbar__avatar{
+    width: 40px;
+    height: 40px;   
 }

@@ -28,20 +28,25 @@ const FileList = () => {
 
     if(FileView === 'list'){
         return (
-            <div className = 'filelist'>
-                <div className="filelist_header">
-                    <div className="filelist__name">Название</div>
-                    <div className="filelist__date">Дата</div>
-                    <div className="filelist__size">Размер</div>
-                </div>
-                <TransitionGroup>
-                    {files.map(file => 
-                        <CSSTransition key={file._id} timeout = {1000} classNames={'file'} exit={false}>
-                          <File  file={file}/>
-                     </CSSTransition>
-                     )}
-                </TransitionGroup>
-            </div>
+            <TransitionGroup>
+            <CSSTransition>
+                
+                    <div className = 'filelist'>
+                        <div className="filelist_header">
+                            <div className="filelist__name">Название</div>
+                            <div className="filelist__date">Дата</div>
+                            <div className="filelist__size">Размер</div>
+                        </div>
+                        
+                            {files.map(file => 
+                                <CSSTransition key={file._id} timeout = {1000} classNames={'file'} exit={false}>
+                                <File  file={file}/>
+                            </CSSTransition>
+                            )}
+                    
+                    </div>
+                </CSSTransition>
+            </TransitionGroup>
         )
     }
     

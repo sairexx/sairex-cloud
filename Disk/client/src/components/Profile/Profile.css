@@ -1,0 +1,65 @@
+.avatar__block {
+    width: 800px;
+    height: 600px;
+    background-color: #5622E5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Profile{
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    justify-content: center;
+}
+.main{
+    width: 1200px;
+    height: 600px;
+    background-color: coral;
+    margin-left: 20px;
+    border-radius: 7px;
+}
+.avatar__image{
+    width: 250px;
+    height: 250px;
+    justify-self: center;
+    background-color: #E0E0E0;
+    border-radius: 1000px;
+    margin-top: 40px;
+}
+.Login{
+    width: 400px;
+    margin-top: 40px;
+    background-color: darkcyan;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.Password{
+    width: 250px;
+    margin-top: 10px;
+    background-color: darkcyan;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+.exit__logo{
+    position: relative;
+    width: 40;
+    height: 40px;
+    margin-top : 135px;
+    margin-left: 750px;
+    cursor: pointer;
+
+}
+.edit__avatar{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-top: 275px;
+    cursor: pointer;
+}

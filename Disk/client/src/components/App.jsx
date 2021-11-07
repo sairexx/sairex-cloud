@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "./actions/User";
 import Disk from "./Disk/Disk";
-import { showLoader } from "../reducers/appReducer";
-import Info from "./Info/Info";
+import Profile from "./Profile/Profile";
+
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
           :
             <Switch>
             <Route exact path = "/" component = {Disk}/>
+            <Route exact path = "/profile" component = {Profile}/>
             <Redirect to = "/"/> 
           </Switch>
           }

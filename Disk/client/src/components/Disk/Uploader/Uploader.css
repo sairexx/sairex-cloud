@@ -2,13 +2,14 @@
     width:300px;
     height:300px;
     position: fixed;
-    background-color: #76777B;
+    background-color: #0059b3;
     bottom: 0;
     right: 0;
     border-radius:12px 12px 0 0;
     margin-right: 20px;
     padding: 10px;
     overflow-y: auto;
+    color: white;
  }
  .uploader__header{
      margin: 7px;
@@ -21,17 +22,19 @@
      height:16px;
      border: none;
      border-radius: 10px;
-     background-color:red;
+     background-color:rgb(255, 255, 255);
  }
  .uploader__close:hover{
      cursor: pointer;
  }
 
  .upload-file{
-     background-color:rgb(156, 156, 156);
+     background-color:#001E3C;
      border-radius: 8px;
      margin: 5px 0;
      padding: 5px 10px;
+     color: white;
+  
  }
  .upload-file__header{
      display: flex;
@@ -53,6 +56,23 @@
      color: rgb(0, 0, 0);
      left:50%;
      position: absolute;
-     
-     
  }
+ .upload-file__remove{
+     border: none;
+     background-color: white;
+     width: 10px;
+     height: 10px;
+     border-radius: 10px;
+     cursor: pointer;
+ }
+ ::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track { 
+    background: rgb(31, 31, 31);
+}
+/* Ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgb(112, 112, 112);
+}
