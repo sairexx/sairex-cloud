@@ -25,7 +25,7 @@ app.use("/api/files", fileRouter)
 
 const start = async () => {
     try{
-        mongoose.connect(config.get('mongodb+srv://Cyrex:pt7ObCVF67hEuK7F@clusterss.x4qj1.mongodb.net/Clusterss?retryWrites=true&w=majority'))
+        mongoose.connect(config.get('dbUrl'))
         app.listen(PORT, () => {
             console.log('Server started on port', PORT)
         })
