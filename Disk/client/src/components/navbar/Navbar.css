@@ -5,7 +5,7 @@
     align-items: center;
     height: 50px;
     background: #000000;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     color: white;
     padding: 0 85px;
@@ -14,8 +14,10 @@
     font-size: 24px;
     font-weight: 700;
     display: flex;
-    align-self: center;
+    justify-content: space-around;
     font-family: 'Ubuntu', sans-serif; 
+    text-decoration: none;
+    color: white;
 }
 .navbar__login{
     margin-left: auto;
@@ -39,5 +41,6 @@
 }
 .navbar__avatar{
     width: 40px;
-    height: 40px;   
+    height: 40px;
+    border-radius: 20px;   
 }

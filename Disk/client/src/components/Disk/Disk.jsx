@@ -22,7 +22,7 @@ const Disk = () => {
 
     useEffect(() => {
         dispatch(getFiles(currentDir, sort))
-    },[currentDir,sort ])
+    },[currentDir,sort])
 
     //Скрыть/показать попап 
     function showPopupHandler() {

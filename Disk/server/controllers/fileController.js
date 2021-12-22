@@ -16,10 +16,10 @@ class FileController {
             //если нету родительской папки
              if(!parrentFile){
                  file.path = name
-                 await FileService.createDir(file)
+                 await FileService.createDir(req, file)
              } else{
                  file.path = `${parrentFile.path}\\${file.name}`
-                 await FileService.createDir(file)
+                 await FileService.createDir(req, file)
                  parrentFile.childs.push(file._id)
                  await parrentFile.save()
              }
@@ -67,11 +67,12 @@ class FileController {
                 return res.status(400).json({message:"There no space on the disk"})
             }
             user.usedSpace = user.usedSpace + file.size
+
             let path;
             if(parent){
-                path = `${config.get('filePath')}\\${user._id}\\${parent.path}\\${file.name}`
+                path = `${req.filePath}\\${user._id}\\${parent.path}\\${file.name}`
             } else{
-                path = `${config.get('filePath')}\\${user._id}\\${file.name}`
+                path = `${req.filePath}\\${user._id}\\${file.name}`
             }
             if(fs.existsSync(path)){
                 return res.status(400).json({message:"File already exists"})
@@ -87,7 +88,7 @@ class FileController {
                 type,
                 size:file.size,
                 path:filePath,
-                parrent:parent?._id,
+                parrent:parent ? parent._id : null,
                 user: user._id
             })
             await dbFile.save()
@@ -103,7 +104,7 @@ class FileController {
     async downloadFile(req, res) {
         try {
             const file = await File.findOne({_id: req.query.id, user: req.user.id})
-            const path = fileService.getPath(file)
+            const path = fileService.getPath(req, file)
             if (fs.existsSync(path)) {
                 return res.download(path, file.name)
             }
@@ -121,7 +122,7 @@ class FileController {
             if (!file) {
                 return res.status(400).json({message:'file not found'})
             }
-            FileService.deleteFile(file)
+            FileService.deleteFile(req , file)
             await file.remove()
             return res.json({message : "File was deleted"})
         } catch (e) {

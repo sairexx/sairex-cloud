@@ -39,7 +39,7 @@ router.post('/registration',
         const hashPassword = await bcrypt.hash(password, 8)
         const user = new User({email, password:hashPassword})
         await user.save()
-        await FileService.createDir(new File({user: user.id, name:''}))
+        await FileService.createDir(req, new File({user: user.id, name:''}))
         return res.json({message:"User was created"})
 
     }catch(e){
@@ -92,7 +92,7 @@ router.get('/auth', authMiddleware,
                 id:user.id,
                 email: user.email,
                 diskSpace:user.diskSpace,
-                UserSpace:user.userSpace,
+                UsedSpace:user.usedSpace,
                 avatar: user.avatar
             }
         })

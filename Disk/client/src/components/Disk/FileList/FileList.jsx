@@ -28,8 +28,8 @@ const FileList = () => {
 
     if(FileView === 'list'){
         return (
-            <TransitionGroup>
-            <CSSTransition>
+         
+            
                 
                     <div className = 'filelist'>
                         <div className="filelist_header">
@@ -39,14 +39,14 @@ const FileList = () => {
                         </div>
                         
                             {files.map(file => 
-                                <CSSTransition key={file._id} timeout = {1000} classNames={'file'} exit={false}>
+                                
                                 <File  file={file}/>
-                            </CSSTransition>
+                           
                             )}
                     
                     </div>
-                </CSSTransition>
-            </TransitionGroup>
+                
+           
         )
     }
     
