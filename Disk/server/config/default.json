@@ -1,7 +1,7 @@
 {
-    "serverPort": 5000,
-    "dbUrl": "mongodb+srv://Cyrex:pt7ObCVF67hEuK7F@clusterss.x4qj1.mongodb.net/Clusterss?retryWrites=true&w=majority",
-    "secretKey":"mern-secret-key",
-    "filePath": "C:\\Users\\DRAKE\\Documents\\GitHub\\CyrexCLoud\\Disk\\server\\files",
-    "staticPath": "C:\\Users\\DRAKE\\Documents\\GitHub\\CyrexCLoud\\Disk\\server\\static"
+  "serverPort": 5000,
+  "dbUrl": "mongodb+srv://Cyrex:pt7ObCVF67hEuK7F@clusterss.x4qj1.mongodb.net/?retryWrites=true&w=majority",
+  "secretKey": "mern-secret-key",
+  "filePath": "C:\\Users\\DRAKE\\Documents\\GitHub\\CyrexCLoud\\Disk\\server\\files",
+  "staticPath": "C:\\Users\\DRAKE\\Documents\\GitHub\\CyrexCLoud\\Disk\\server\\static"
 }

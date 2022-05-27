@@ -1,29 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap');
-body{
-    font-family: 'Ubuntu', sans-serif; 
+
+body {
+    font-family: 'Ubuntu', sans-serif;
     background: white;
-  
+
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-#root{
+
+#root {
     width: 100%;
-    
+
 }
-.app{
+
+.app {
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
-.wrap{
-    width: 1740px;
+
+.wrap {
+    width: 1300px;
     display: flex;
     flex-direction: column;
     background-color: white;
     align-self: center;
     height: 95vh;
+
 
 }

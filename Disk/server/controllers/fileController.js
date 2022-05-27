@@ -1,106 +1,107 @@
-const FileService = require('../services/fileService')
-const User = require('../models/User')
-const File = require('../models/File')
+const fileService = require('../services/fileService')
 const config = require('config')
 const fs = require('fs')
-const fileService = require('../services/fileService')
+const User = require('../models/User')
+const File = require('../models/File')
 const Uuid = require('uuid')
 
 class FileController {
-    //Создание папки
-    async createDir(req,res){
-        try{
+    async createDir(req, res) {
+        try {
             const {name, type, parent} = req.body
-            const file = new File({name, type, parent, user: req.user.id})
-            const parrentFile = await File.findOne({_id:parent})
-            //если нету родительской папки
-             if(!parrentFile){
-                 file.path = name
-                 await FileService.createDir(req, file)
-             } else{
-                 file.path = `${parrentFile.path}\\${file.name}`
-                 await FileService.createDir(req, file)
-                 parrentFile.childs.push(file._id)
-                 await parrentFile.save()
-             }
+            const file = new File({name, type: 'dir', parent, user: req.user.id})
+            const parentFile = await File.findOne({_id: parent})
+            if(!parentFile) {
+                file.path = name
+                await fileService.createDir(req, file)
+            } else {
+                file.path = `${parentFile.path}\\${file.name}`
+                await fileService.createDir(req, file)
+                parentFile.childs.push(file._id)
+                await parentFile.save()
+            }
             await file.save()
             return res.json(file)
-        }catch(e){
+        } catch (e) {
             console.log(e)
             return res.status(400).json(e)
         }
     }
 
-    //получение файлов
-    async getFile(req, res ){
-        try{
+    async getFiles(req, res) {
+        try {
             const {sort} = req.query
             let files
-            switch(sort){
+            switch (sort) {
                 case 'name':
                     files = await File.find({user: req.user.id, parent: req.query.parent}).sort({name:1})
-                    break;    
+                    break
                 case 'type':
                     files = await File.find({user: req.user.id, parent: req.query.parent}).sort({type:1})
-                    break;        
+                    break
                 case 'date':
                     files = await File.find({user: req.user.id, parent: req.query.parent}).sort({date:1})
-                    break;        
+                    break
                 default:
                     files = await File.find({user: req.user.id, parent: req.query.parent})
                     break;
             }
             return res.json(files)
-
-        }catch(e){
+        } catch (e) {
             console.log(e)
-            return res.status(500).json({message:"Can not get files"})
+            return res.status(500).json({message: "Can not get files"})
         }
     }
-    //загрузка файлов на сайт
-    async uploadFile(req, res){
-        try{
+
+    async uploadFile(req, res) {
+        try {
             const file = req.files.file
-            const parent = await File.findOne({user:req.user.id, _id: req.body.parent}) 
+
+            const parent = await File.findOne({user: req.user.id, _id: req.body.parent})
             const user = await User.findOne({_id: req.user.id})
-            if(user.usedSpace + file.size > user.diskSpace){
-                return res.status(400).json({message:"There no space on the disk"})
+
+            if (user.usedSpace + file.size > user.diskSpace) {
+                return res.status(400).json({message: 'There no space on the disk'})
             }
+
             user.usedSpace = user.usedSpace + file.size
 
             let path;
-            if(parent){
+            if (parent) {
                 path = `${req.filePath}\\${user._id}\\${parent.path}\\${file.name}`
-            } else{
+            } else {
                 path = `${req.filePath}\\${user._id}\\${file.name}`
             }
-            if(fs.existsSync(path)){
-                return res.status(400).json({message:"File already exists"})
+
+            if (fs.existsSync(path)) {
+                return res.status(400).json({message: 'File already exist'})
             }
             file.mv(path)
+
             const type = file.name.split('.').pop()
             let filePath = file.name
-            if(parent){
-                filePath = parent.path + '\\' + file.name
+            if (parent) {
+                filePath = parent.path + "\\" + file.name
             }
             const dbFile = new File({
-                name:file.name,
+                name: file.name,
                 type,
-                size:file.size,
-                path:filePath,
-                parrent:parent ? parent._id : null,
+                size: file.size,
+                path: filePath,
+                parent: parent ? parent._id : null,
                 user: user._id
-            })
+            });
+
             await dbFile.save()
             await user.save()
-            res.json(dbFile)
 
-        }catch(e){
+            res.json(dbFile)
+        } catch (e) {
             console.log(e)
-            return res.status(500).json({message:"Upload error"})
+            return res.status(500).json({message: "Upload error"})
         }
     }
-    //загрузка файлов на компьютер
+
     async downloadFile(req, res) {
         try {
             const file = await File.findOne({_id: req.query.id, user: req.user.id})
@@ -114,23 +115,22 @@ class FileController {
             res.status(500).json({message: "Download error"})
         }
     }
-    //удаление файлов
+
     async deleteFile(req, res) {
         try {
             const file = await File.findOne({_id: req.query.id, user: req.user.id})
-            console.log('file')
             if (!file) {
-                return res.status(400).json({message:'file not found'})
+                return res.status(400).json({message: 'file not found'})
             }
-            FileService.deleteFile(req , file)
+            fileService.deleteFile(req, file)
             await file.remove()
-            return res.json({message : "File was deleted"})
+            return res.json({message: 'File was deleted'})
         } catch (e) {
             console.log(e)
-            res.status(500).json({message: "Dir is not empty"})
+            return res.status(400).json({message: 'Dir is not empty'})
         }
     }
-    //поиск файлов
+
     async searchFile(req, res) {
         try {
             const searchName = req.query.search
@@ -139,10 +139,10 @@ class FileController {
             return res.json(files)
         } catch (e) {
             console.log(e)
-            res.status(500).json({message: "Search error"})
+            return res.status(400).json({message: 'Search error'})
         }
     }
-    //загрузка аватара
+
     async uploadAvatar(req, res) {
         try {
             const file = req.files.file
@@ -154,10 +154,10 @@ class FileController {
             return res.json(user)
         } catch (e) {
             console.log(e)
-            res.status(500).json({message: "Upload avatar error"})
+            return res.status(400).json({message: 'Upload avatar error'})
         }
     }
-    //удаление аватара
+
     async deleteAvatar(req, res) {
         try {
             const user = await User.findById(req.user.id)
@@ -167,16 +167,9 @@ class FileController {
             return res.json(user)
         } catch (e) {
             console.log(e)
-            res.status(500).json({message: "Delete avatar error"})
+            return res.status(400).json({message: 'Delete avatar error'})
         }
     }
-
-
 }
-
-
-
-
-
 
 module.exports = new FileController()

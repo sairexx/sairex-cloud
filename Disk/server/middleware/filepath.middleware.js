@@ -1,10 +1,9 @@
-function filePath(path){
-    return function (req, res, next) {
-        req.filepath = path 
+function filePath(path) {
+    return function(req, res, next) {
+        req.filePath = path
         next();
     }
 }
-
 
 
 

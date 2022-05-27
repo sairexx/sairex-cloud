@@ -1,40 +1,38 @@
-const fs = require('fs') //Предназначен для работы с файловой системой
-const { resolve } = require('path')
+const fs = require('fs')
+const File = require('../models/File')
 const config = require('config')
-const file = require('../models/File')
-
 
 class FileService {
-    createDir(req, file) {   
-        const filePath = this.getPath(req, file)
 
+    createDir(req, file) {
+        const filePath = this.getPath(req, file)
         return new Promise(((resolve, reject) => {
-            try{
-                if(!fs.existsSync(filePath)){
+            try {
+                if (!fs.existsSync(filePath)) {
                     fs.mkdirSync(filePath)
-                    return resolve({message:"File was created"})
-                } else{
-                    return reject ({message:"File already exist"})
+                    return resolve({message: 'File was created'})
+                } else {
+                    return reject({message: "File already exist"})
                 }
-            }catch(e){
-                return reject({message: "File error"})
+            } catch (e) {
+                return reject({message: 'File error'})
             }
         }))
-    } 
+    }
 
-    deleteFile(req, file){
+    deleteFile(req, file) {
         const path = this.getPath(req, file)
-        if(file.type === 'dir'){
+        if (file.type === 'dir') {
             fs.rmdirSync(path)
-        } else{
+        } else {
             fs.unlinkSync(path)
         }
     }
 
-    getPath(req, file){
+    getPath(req, file) {
         return req.filePath + '\\' + file.user + '\\' + file.path
     }
 }
 
-module.exports = new FileService()
 
+module.exports = new FileService()

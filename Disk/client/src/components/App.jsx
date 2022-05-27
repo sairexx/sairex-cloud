@@ -1,6 +1,6 @@
 import Navbar from "./navbar/Navbar";
 import './App.css'
-import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Registration from "./Authorization/Registration";
 import Login from "./Authorization/Login";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,28 +16,29 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-   dispatch(auth())    
+    dispatch(auth())
   }, [])
 
   return (
     <BrowserRouter>
       <div className="app">
-        <Navbar/>
-        <div className="wrap"> 
-          {!isAuth  ?
-              <Switch>
-              <Route path = "/registration" component = {Registration}/>
-              <Route path = "/login" component = {Login}/>
-              <Redirect to = "/" /> 
-            </Switch>
-          :
+        <Navbar />
+        <div className="wrap">
+          {!isAuth ?
             <Switch>
-            <Route exact path = "/" component = {Disk}/>
-            <Route exact path = "/profile" component = {Profile}/>
-            <Redirect to = "/"/> 
-          </Switch>
+              <Route path="/registration" component={Registration} />
+              <Route path="/login" component={Login} />
+              <Route path="/" component={Registration} />
+              <Redirect to="/" />
+            </Switch>
+            :
+            <Switch>
+              <Route exact path="/" component={Disk} />
+              <Route exact path="/profile" component={Profile} />
+              <Redirect to="/" />
+            </Switch>
           }
-        </div> 
+        </div>
       </div>
     </BrowserRouter>
   );
